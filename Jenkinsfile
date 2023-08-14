@@ -21,9 +21,7 @@ agent any
      stage('Deploy to k8s'){
         steps{
           dir ("k8s"){
-            
-          }
-          sshagent(['k8s-master']) {
+            sshagent(['k8s-master']) {
             sh "scp -o StrictHostKeyChecking=no httpd-deploy.yaml httpd-service.yaml root@192.168.0.145:/home/"
             script{
               try{
@@ -34,6 +32,8 @@ agent any
             }
             
           }
+          }
+
         }
      }
   }

@@ -24,12 +24,12 @@ agent any
             
           }
           sshagent(['k8s-master']) {
-            sh "scp -o StrictHostKeyChecking=no httpd-deploy.yaml httpd-service.yaml root@192.168.0.145:/"
+            sh "scp -o StrictHostKeyChecking=no httpd-deploy.yaml httpd-service.yaml root@192.168.0.145:/home/"
             script{
               try{
-                sh "ssh root@192.168.0.145 kubectl apply -f ."
+                sh "ssh root@192.168.0.145 kubectl apply -f /home/"
               }catch(error){
-                sh "ssh root@192.168.0.145 kubectl create -f ."
+                sh "ssh root@192.168.0.145 kubectl create -f /home/"
               }
             }
             

@@ -21,7 +21,7 @@ agent any
      stage('Deploy to k8s'){
         steps{
           sshagent(['k8s-master']) {
-            sh "scp -o StrictHostKeyChecking ./k8s root@192.168.0.145:/"
+            sh "scp -o StrictHostKeyChecking=no ./k8s root@192.168.0.145:/"
             script{
               try{
                 sh "ssh root@192.168.0.145 kubectl apply -f ./k8s"

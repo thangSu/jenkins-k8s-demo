@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: httpd-deployment
-        image: hangsu/weather-web:1.0.0
+        image: thangsu/weather-web:1.0.0
         resources:
           limits:
             memory: "128Mi"

@@ -20,13 +20,16 @@ agent any
      }
      stage('Deploy to k8s'){
         steps{
+          dir ("k8s"){
+            
+          }
           sshagent(['k8s-master']) {
-            sh "scp -o StrictHostKeyChecking=no ./k8s root@192.168.0.145:/"
+            sh "scp -o StrictHostKeyChecking=no httpd-deploy.yaml httpd-service.yaml root@192.168.0.145:/"
             script{
               try{
-                sh "ssh root@192.168.0.145 kubectl apply -f ./k8s"
+                sh "ssh root@192.168.0.145 kubectl apply -f ."
               }catch(error){
-                sh "ssh root@192.168.0.145 kubectl create -f ./k8s"
+                sh "ssh root@192.168.0.145 kubectl create -f ."
               }
             }
             

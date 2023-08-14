@@ -11,7 +11,7 @@ agent any
 	  }
     stage("push image to dockerhub"){
       steps{
-        dir ("httpd"){
+        dir ("jenkins-k8s-demo/httpd"){
           // Run Maven on a Unix agent.
           sh "docker build . -t thangsu/weather-web:1.0.0"
           sh 'docker push thangsu/weather-web:1.0.0'
